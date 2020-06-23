@@ -1,0 +1,28 @@
+version: '3'
+services:
+  quuta_php:
+    build: ./php
+    image: quuta-php
+    container_name: quuta-php 
+    volumes:
+      - ./quuta-server:/var/www/html
+      - ./a:/var/
+    ports:
+      - "8080:8080"
+    command: ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8080"]
+  quuta_mysql:
+    container_name: quuta-mysql 
+    image: mysql:latest
+    ports:
+    - 23306:3306
+    volumes:
+    - ./mysql/db/mysql_init:/docker-entrypoint-initdb.d
+    - ./mysql/db/mysql_data:/var/lib/mysql
+    - ./mysql/db/my.cnf:/etc/mysql/conf.d/my.cnf
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: quuta
+      MYSQL_USER: quuta
+      MYSQL_PASSWORD: quuta
+      TZ: "Asia/Tokyo"
+
