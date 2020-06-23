@@ -6,13 +6,12 @@ services:
     container_name: quuta-php 
     volumes:
       - ./quuta-server:/var/www/html
-      - ./a:/var/
     ports:
       - "8080:8080"
     command: ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8080"]
   quuta_mysql:
     container_name: quuta-mysql 
-    image: mysql:latest
+    image: mysql:8.0
     ports:
     - 23306:3306
     volumes:
