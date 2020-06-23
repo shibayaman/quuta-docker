@@ -8,7 +8,7 @@ then
 	echo "skipping create phase"
 else
 	echo "create laravel project"
-	composer create-project laravel/laravel=6.* .  --prefer-dist
+	composer create-project laravel/laravel=${LARAVEL_VERSION} .  --prefer-dist
 fi
 
 exec "$@"
